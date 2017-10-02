@@ -1,12 +1,20 @@
+<!--
+
+  ©2017 TheGPDTeam - thegpdteam.github.io
+  Ce site web est la propriété de l'équipe en charge du développement du ProjetRPG.
+
+  Toute reproduction dans un but commercial est strictement interdite.
+
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<title>Grand Projet de Dévelopement - Un projet où vous etes le maillon fort</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+   <style>
 
     .btn {
       border-radius:0;
@@ -34,11 +42,10 @@
       border-radius : 0;
     }
   </style>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="/js/bootstrap.min.js"></script>
-</head>
+ </head>
 <body>
+
+<!-- NAVIGATION -->
 <nav class="navbar sticky-top navbar-toggleable-md navbar-inverse" style="background-color:#404040">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -56,12 +63,12 @@
         </a>
         <div class="dropdown-menu" style="border-radius:0" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="http://github.com/TheGPDteam/rpg">Dépot GitHub</a>
-          <a class="dropdown-item" href="#">Forum</a>
-          <a class="dropdown-item" href="#">BugTracker</a>
+          <a class="dropdown-item disabled" href="#">Forum</a>
+          <a class="dropdown-item disabled" href="#">BugTracker</a>
         </div>
       </div>
       <div class="nav-item">
-        <a class="nav-link" href="/play">Jouer</a>
+        <a class="nav-link" href="/play.html">Jouer</a>
       </div>
     </div>
   </div>
@@ -88,16 +95,18 @@
       <div class="card">
         <h3 class="card-header text-center" id="title">Informations</h3>
       <div class="card-block">
-        <div class="text-muted text-right small" id="time"></div>
+        <div class="text-muted text-right small" id="time">Test</div>
         <hr class="my-2">
-        <p class="card-text" id="content"></p>
+        <p class="card-text" id="content">Bonjour, ce site est encore en construction. <br> Merci de revenir bientôt</p>
         <hr class="my-2">
         <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-primary" id="lien" href="">Voir les réactions</a>
+        <!--<a class="btn btn-primary" id="lien" href="">Voir les réactions</a>-->
       </div>
       </div>
 </div>
-    </div>
+
+<!-- ELEMENTS LATERAL -->
+</div>
     <div class="col-lg-3">
       <ul class="nav nav-tabs" style="border:none">
           <li class="nav-item dropdown">
@@ -150,9 +159,9 @@
           Dernières Actions du dépot
         </div>
         <div class="card-block">
-          <h4 class="card-title">Special title treatment</h4>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <h4 class="card-title" id="commit-title"></h4>
+          <p class="card-text" >Auteur : <span id="commit-message"></span> <a href="#" class="btn float-right btn-outline-info btn-sm" id="commit-link">Voir en détail</a></p>
+          
         </div>
       </div>
       <div class="card" style="margin-top:5px">
@@ -169,7 +178,7 @@
   </div>
 </div>
 
-<!-- Footer -->
+<!-- PIED DE PAGE -->
 <footer style="margin-bottom:2%;">
     <hr class="my-3">
     <div class="container">
@@ -192,40 +201,34 @@
         <hr class="my-3">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <p class="lead text-muted" style="font-size:1em">Powered by CodeIgniter and Bootstrap 4 - ©2017 GPDTeam</p>
+                <p class="lead text-muted" style="font-size:1em">Powered by jQuery and Bootstrap 4 - ©2017 GPDTeam</p>
             </div>
         </div>
     </div>
 </footer>
-
-<script>
-  $(document).ready(  
- function()
- {
-   $.ajax( {
-            type: "GET",
-            url: "http://localhost:8080/gpd/forum/syndication.php?fid=2&limit=1",
-            dataType: "xml",
-            success: function(xml) 
-                     {
-                       $(xml).find('item').each(   
-                         function()
-                         {
-                            var title = $(this).find('title').text();
-                            var time = $(this).find('pubDate').text();
-                            var desc = $(this).find('description').text();
-                            var link = $(this).find('guid').text();
-                            var d = new Date(time)
-                            $('#lien').attr("href", link);
-                            $('#title').text(title);
-                            $('#time').text(d.toLocaleString());
-                            $('#content').html(desc);
-                         }
-                       )
-                      }
-        });
-  }
-);
-</script>
 </body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+ <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.5/dist/showdown.min.js"></script>
+<script>
+  $(document).ready( function() {
+
+    $.getJSON("https://api.github.com/repos/theGPDteam/ProjetRPG/branches/master")
+      .done(function( data ){
+        $("#commit-message").text( data.commit.commit.author.name );
+        $("#commit-title").text( data.commit.commit.message );
+        $("#commit-link").attr("href", data.commit.html_url );
+      });
+
+    $.get("https://raw.githubusercontent.com/TheGPDteam/thegpdteam.github.io/master/actualite/derniere-actualite.md")
+    .done(function(data){
+      div = $("#content");
+      var converter = new showdown.Converter();
+      text      = data;
+      div.html(converter.makeHtml(text));
+    });
+
+  });
+</script>
 </html>
