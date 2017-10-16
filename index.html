@@ -14,34 +14,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-   <style>
-
-    .btn {
-      border-radius:0;
-    }
-
-    .card {
-      font-family: Raleway;
-      border-radius:0;
-    }
-
-    .card-header {
-      border-radius: 0;
-    }
-
-    .list-group-item:first-child {
-      border-radius : 0;
-    }
-
-    .navbar {
-      height : 45px;
-      box-shadow: 0px 0px 2px #404040;
-    }
-
-    .list-group-item:last-child {
-      border-radius : 0;
-    }
-  </style>
+   <style href"index.css"></style>
  </head>
 <body>
 
@@ -129,24 +102,24 @@
         <div class="card-block">
           <ul class="list-group">
             <li class="list-group-item list-group-item-success">
-                  <div class="col-lg-7 text-left">    
-                    Compilation 
+                  <div class="col-lg-7 text-left">
+                    Compilation
                   </div>
                   <div class="col-lg-5 text-right">
                     <i class="material-icons">done</i>
                   </div>
             </li>
             <li class="list-group-item list-group-item-warning">
-                  <div class="col-lg-7 text-left">    
-                    Tests Unitaires 
+                  <div class="col-lg-7 text-left">
+                    Tests Unitaires
                   </div>
                   <div class="col-lg-5 text-right">
                     <i class="material-icons">warning</i>
                   </div>
             </li>
             <li class="list-group-item list-group-item-danger">
-                  <div class="col-lg-7 text-left">    
-                    Execution 
+                  <div class="col-lg-7 text-left">
+                    Execution
                   </div>
                   <div class="col-lg-5 text-right">
                     <i class="material-icons">clear</i>
@@ -162,7 +135,7 @@
         <div class="card-block">
           <h4 class="card-title" id="commit-title"></h4>
           <p class="card-text" >Auteur : <span id="commit-message"></span> <a href="#" class="btn float-right btn-outline-info btn-sm" id="commit-link">Voir en détail</a></p>
-          
+
         </div>
       </div>
       <div class="card" style="margin-top:5px">
@@ -212,24 +185,5 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
  <script src="https://cdn.rawgit.com/showdownjs/showdown/1.7.5/dist/showdown.min.js"></script>
-<script>
-  $(document).ready( function() {
-
-    $.getJSON("https://api.github.com/repos/theGPDteam/ProjetRPG/branches/master")
-      .done(function( data ){
-        $("#commit-message").text( data.commit.commit.author.name );
-        $("#commit-title").text( data.commit.commit.message );
-        $("#commit-link").attr("href", data.commit.html_url );
-      });
-
-    $.get("https://raw.githubusercontent.com/TheGPDteam/thegpdteam.github.io/master/actualite/derniere-actualite.md")
-    .done(function(data){
-      div = $("#content");
-      var converter = new showdown.Converter();
-      text      = data;
-      div.html(converter.makeHtml(text));
-    });
-
-  });
-</script>
+<script src="index.js"></script>
 </html>
